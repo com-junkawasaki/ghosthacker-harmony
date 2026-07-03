@@ -16,7 +16,7 @@
     (is (= :asymmetry (battle/battle-outcome (assoc battle/initial-battle-state
                                                     :groove 1.0 :asymmetry? true))))))
 
-(deftest judge-chart-input-asymmetry-latch-test
+(deftest judge-chart-input-asymmetry-latch-boundary-test
   (testing "perfectの連打ではasymmetry?はfalseのまま"
     ;; grooveは+0.08/perfect。victory-groove-threshold(0.6)に届くには
     ;; 8拍以上必要(8 * 0.08 = 0.64 >= 0.6)。
