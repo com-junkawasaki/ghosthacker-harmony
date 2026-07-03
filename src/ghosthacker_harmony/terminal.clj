@@ -67,7 +67,10 @@
                         [{:bpm groove/default-bpm :beat-count half}
                          {:bpm (long (* 1.25 groove/default-bpm)) :beat-count rest-count}])))
 
-(defn -main [& args]
+(defn -main
+  "Entry point for `clojure -M -m ghosthacker-harmony.terminal [beat-count]`.
+  See the ns docstring."
+  [& args]
   (let [beat-count (if-let [a (first args)] (Integer/parseInt a) 12)]
     (println (format "GHOST HACKER: HARMONY — Ghost Battle (%d beats)" beat-count))
     (println "Enterキーで各拍を叩いてください。準備ができたらEnterで開始:")
