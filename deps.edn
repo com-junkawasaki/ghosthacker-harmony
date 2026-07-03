@@ -1,0 +1,21 @@
+;; GHOST HACKER: HARMONY — Ghost Hacker portfolio #2, the flagship rhythm
+;; game / Ghost Battle proper (ADR-2607023200). Depends on the shared
+;; groove-sync judgment core (ADR-2607032600) — see
+;; com-junkawasaki/ghosthacker-groove-core for the judgment/score/combo/
+;; groove/chart API this repo builds the ASYMMETRY/HARMONY battle framing
+;; on top of.
+{:paths ["src"]
+
+ :deps {org.clojure/clojure {:mvn/version "1.12.0"}
+        com-junkawasaki/ghosthacker-groove-core
+        {:git/url "https://github.com/com-junkawasaki/ghosthacker-groove-core.git"
+         :sha "67e9ef2b1bba0e0c64f5366f9813338374bebfae"}}
+
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]}
+  ;; clj-kondo as a Clojars lib (no Homebrew/system install needed).
+  :lint {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2024.09.27"}}
+         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"]}}}
