@@ -18,4 +18,10 @@
          :main-opts ["-m" "cognitect.test-runner"]}
   ;; clj-kondo as a Clojars lib (no Homebrew/system install needed).
   :lint {:extra-deps {clj-kondo/clj-kondo {:mvn/version "2024.09.27"}}
-         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"]}}}
+         :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"]}
+  ;; Browser host adapter (ADR-2607100900 follow-up (b)): same shape as
+  ;; ghosthacker-flow's -- plain reagent, Web Audio for the beat clock +
+  ;; synthesized tick (no composed music layers exist yet).
+  :cljs {:extra-deps {org.clojure/clojurescript {:mvn/version "1.11.132"}
+                      reagent/reagent           {:mvn/version "1.2.0"}
+                      thheller/shadow-cljs      {:mvn/version "2.28.20"}}}}}

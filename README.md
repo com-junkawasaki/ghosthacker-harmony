@@ -41,7 +41,18 @@ Ghost Hacker ゲームポートフォリオ第2弾（旗艦）。設計は
 ASYMMETRYにラッチした瞬間を画面に表示し、最後にHARMONY/ASYMMETRYの
 勝敗を表示する。既定の曲構成は前半→後半で1.25倍速に加速する2セクション。
 
-本格的なレンダリング/入力/音声ホストアダプタは依然として別レイヤーの課題。
+**ブラウザで遊べるホストアダプタ**が `src/ghosthacker_harmony/web.cljs`
+（reagent、ADR-2607100900 follow-up (b)、ghosthacker-flowと同じ設計）:
+作曲済みの2レイヤー楽曲は存在しないため、Web Audioの
+`AudioContext.currentTime`でビートクロック+合成メトロノーム音
+（オシレーター）を駆動しつつ、`:groove`は見た目のTENSE⇄Sky High
+crossfadeを駆動する。ASYMMETRYがラッチした瞬間は背景が暗い赤に固定
+される（`:groove`がその後持ち直しても戻らない、というpure核の
+one-way latchを視覚化）。Web Audio非対応環境では`performance.now()`+
+無音に自動degrade。
+
+本格的なレンダリング（`kami-engine-sdk`のようなキャンバス/wasm描画）は
+依然として別レイヤーの課題——現状はDOM/CSSのみ。
 
 ## 開発
 
@@ -55,10 +66,18 @@ Lint（clj-kondo、Clojars経由でHomebrew等の別インストール不要）:
 clojure -M:lint
 ```
 
-遊んでみる:
+ターミナルで遊んでみる:
 
 ```bash
 clojure -M -m ghosthacker-harmony.terminal 16
+```
+
+ブラウザで遊んでみる（`npm install`は初回のみ、Spaceキーで入力）:
+
+```bash
+npm install
+npx shadow-cljs watch app   # http://localhost:8294 で自動リロード開発
+npx shadow-cljs release app # public/ に静的バンドルをビルド(デプロイ可能)
 ```
 
 変更履歴は [CHANGELOG.md](CHANGELOG.md)。
