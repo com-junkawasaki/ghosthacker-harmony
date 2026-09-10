@@ -21,7 +21,7 @@ Ghost Hacker ゲームポートフォリオ第2弾（旗艦）。設計は
 
 ## 実装範囲
 
-`src/ghosthacker_harmony/battle.cljc` — pure、host-free。
+`src/ghosthacker_harmony/battle.kotoba` — pure、host-free。
 `ghosthacker.groove.core`をラップし、以下を追加する:
 
 - **ASYMMETRY latch**（`asymmetry?`/`judge-chart-input`）— `:miss`判定で
@@ -35,13 +35,13 @@ Ghost Hacker ゲームポートフォリオ第2弾（旗艦）。設計は
 - `battle-summary` — `groove/summary`に`:outcome`（`:harmony`/`:asymmetry`）
   を足したもの。ホストアダプタのリザルト画面にそのまま渡せる
 
-**プレイ可能な最小プロトタイプ**として `src/ghosthacker_harmony/terminal.clj`
+**プレイ可能な最小プロトタイプ**として `src/ghosthacker_harmony/terminal.kotoba`
 がある（ghosthacker-flowのterminal.cljと同じ構成: 新規依存ゼロ、
 背景`future`が実時刻でtickを刻み、`read-line`で実際の経過時間を判定）。
 ASYMMETRYにラッチした瞬間を画面に表示し、最後にHARMONY/ASYMMETRYの
 勝敗を表示する。既定の曲構成は前半→後半で1.25倍速に加速する2セクション。
 
-**ブラウザで遊べるホストアダプタ**が `src/ghosthacker_harmony/web.cljs`
+**ブラウザで遊べるホストアダプタ**が `src/ghosthacker_harmony/web.kotoba`
 （reagent、ADR-2607100900 follow-up (b)、ghosthacker-flowと同じ設計）:
 作曲済みの2レイヤー楽曲は存在しないため、Web Audioの
 `AudioContext.currentTime`でビートクロック+合成メトロノーム音
