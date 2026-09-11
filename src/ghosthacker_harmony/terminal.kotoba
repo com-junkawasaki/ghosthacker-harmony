@@ -7,7 +7,7 @@
   `ghosthacker-harmony.battle` instead of the plain groove core, so a run
   ends in an explicit ASYMMETRY/HARMONY verdict — Ghost Battle proper.
 
-  Run: clojure -M -m ghosthacker-harmony.terminal [beat-count]"
+  Run: kbb -M -m ghosthacker-harmony.terminal [beat-count]"
   (:require [ghosthacker.groove.core :as groove]
             [ghosthacker-harmony.battle :as battle]))
 
@@ -68,7 +68,7 @@
                          {:bpm (long (* 1.25 groove/default-bpm)) :beat-count rest-count}])))
 
 (defn -main
-  "Entry point for `clojure -M -m ghosthacker-harmony.terminal [beat-count]`.
+  "Entry point for `kbb -M -m ghosthacker-harmony.terminal [beat-count]`.
   See the ns docstring."
   [& args]
   (let [beat-count (if-let [a (first args)] (Integer/parseInt a) 12)]
